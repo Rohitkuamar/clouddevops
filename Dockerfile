@@ -1,4 +1,11 @@
-
-Lineone
-
-add one line too
+FROM centos:latest
+MAINTAINER Rohit
+RUN yum install -y httpd \
+    zip \
+	  unzip
+ADD  https://www.free-css.com/assets/files/free-css-templates/download/page278/dotcom.zip /var/www/html/
+WORKDIR /var/www/html
+RUN unzip dotcom.zip
+RUN cp -rf_MACOSX markups-dotcom dotcom.zip
+CMD ["/usr/sbin/httpd","-D","FOREGROUND"]
+EXPOSE 80
